@@ -1,0 +1,20 @@
+cluster:
+  name: capi-aws-test2
+  network:
+    cidrBlocks:
+      - "192.168.0.0/16"
+  sshKeyName: &ssh pavdmyt
+  region: eu-central-1
+
+master:
+  name: capi-aws-master
+  version: &ver v1.16.2
+  size: t2.medium
+  sshKeyName: *ssh
+
+worker:
+  name: capi-aws-worker
+  count: 2
+  version: *ver
+  size: t2.micro
+  sshKeyName: *ssh

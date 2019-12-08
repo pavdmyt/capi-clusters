@@ -1,0 +1,6 @@
+releases:
+  - name: aws-cluster-fra
+    namespace: clusters
+    chart: ./aws-cluster
+    missingFileHandler: Error
+    # values:
