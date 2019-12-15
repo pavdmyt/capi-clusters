@@ -1,27 +1,27 @@
 apiVersion: cluster.x-k8s.io/v1alpha2
 kind: Machine
 metadata:
-  name: {{ .Values.master.name }}
+  name: {{ include "aws-cluster.fullname" . }}-master
   labels:
     {{- include "aws-cluster.labels" . | nindent 4 }}
     cluster.x-k8s.io/control-plane: "true"
-    cluster.x-k8s.io/cluster-name: {{ .Values.cluster.name }}
+    cluster.x-k8s.io/cluster-name: {{ include "aws-cluster.fullname" . }}
 spec:
   version: {{ .Values.master.version }}
   bootstrap:
     configRef:
       apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
       kind: KubeadmConfig
-      name: {{ .Values.master.name }}
+      name: {{ include "aws-cluster.fullname" . }}-master
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
     kind: AWSMachine
-    name: {{ .Values.master.name }}
+    name: {{ include "aws-cluster.fullname" . }}-master
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
 kind: AWSMachine
 metadata:
-  name: {{ .Values.master.name }}
+  name: {{ include "aws-cluster.fullname" . }}-master
   labels:
     {{- include "aws-cluster.labels" . | nindent 4 }}
 spec:
@@ -36,7 +36,7 @@ spec:
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
 kind: KubeadmConfig
 metadata:
-  name: {{ .Values.master.name }}
+  name: {{ include "aws-cluster.fullname" . }}-master
   labels:
     {{- include "aws-cluster.labels" . | nindent 4 }}
 spec:

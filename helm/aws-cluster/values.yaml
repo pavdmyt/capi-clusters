@@ -1,5 +1,4 @@
 cluster:
-  name: capi-aws-example
   network:
     cidrBlocks:
       - "192.168.0.0/16"
@@ -7,7 +6,6 @@ cluster:
   region: eu-central-1
 
 master:
-  name: capi-aws-master
   version: &ver v1.16.2
   size: t2.medium
   # Specifies size (in Gi) of the root storage device
@@ -15,10 +13,9 @@ master:
   sshKeyName: *ssh
 
 worker:
-  name: capi-aws-worker
   count: 1
   version: *ver
   size: t2.micro
   # Specifies size (in Gi) of the root storage device
-  rootDeviceSize: 16
+  rootDeviceSize: 8
   sshKeyName: *ssh
