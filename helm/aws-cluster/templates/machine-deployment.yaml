@@ -42,6 +42,7 @@ spec:
   template:
     spec:
       instanceType: {{ .Values.worker.size }}
+      rootDeviceSize: {{ .Values.worker.rootDeviceSize }}
       availabilityZone: {{ .Values.cluster.region }}a
       # This IAM profile is part of the pre-requisites.
       iamInstanceProfile: "nodes.cluster-api-provider-aws.sigs.k8s.io"

@@ -26,6 +26,7 @@ metadata:
     {{- include "aws-cluster.labels" . | nindent 4 }}
 spec:
   instanceType: {{ .Values.master.size }}
+  rootDeviceSize: {{ .Values.master.rootDeviceSize }}
   availabilityZone: {{ .Values.cluster.region }}a
   # This IAM profile is part of the pre-requisites.
   iamInstanceProfile: "control-plane.cluster-api-provider-aws.sigs.k8s.io"
