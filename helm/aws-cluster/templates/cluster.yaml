@@ -2,6 +2,8 @@ apiVersion: cluster.x-k8s.io/v1alpha2
 kind: Cluster
 metadata:
   name: {{ .Values.cluster.name }}
+  labels:
+    {{- include "aws-cluster.labels" . | nindent 4 }}
 spec:
   clusterNetwork:
     pods:
@@ -16,6 +18,8 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
 kind: AWSCluster
 metadata:
   name: {{ .Values.cluster.name }}
+  labels:
+    {{- include "aws-cluster.labels" . | nindent 4 }}
 spec:
   # Change this value to the region you want to deploy the cluster in.
   region: {{ .Values.cluster.region }}

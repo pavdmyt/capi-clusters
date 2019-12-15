@@ -3,6 +3,7 @@ kind: MachineDeployment
 metadata:
   name: {{ .Values.worker.name }}
   labels:
+    {{- include "aws-cluster.labels" . | nindent 4 }}
     cluster.x-k8s.io/cluster-name: {{ .Values.cluster.name }}
     # Labels beyond this point are for example purposes,
     # feel free to add more or change with something more meaningful.
@@ -35,6 +36,8 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha2
 kind: AWSMachineTemplate
 metadata:
   name: {{ .Values.worker.name }}
+  labels:
+    {{- include "aws-cluster.labels" . | nindent 4 }}
 spec:
   template:
     spec:
@@ -49,6 +52,8 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1alpha2
 kind: KubeadmConfigTemplate
 metadata:
   name: {{ .Values.worker.name }}
+  labels:
+    {{- include "aws-cluster.labels" . | nindent 4 }}
 spec:
   template:
     spec:
