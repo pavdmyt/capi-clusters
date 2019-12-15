@@ -1,6 +1,42 @@
 releases:
-  - name: aws-cluster-fra
-    namespace: clusters
+  - name: aws-cluster-eu-central
+    namespace: my-clusters
     chart: ./aws-cluster
     missingFileHandler: Error
-    # values:
+    values:
+      - cluster:
+          region: eu-central-1
+          sshKeyName: &ssh pavdmyt
+      - master:
+          sshKeyName: *ssh
+      - worker:
+          count: 1
+          sshKeyName: *ssh
+
+  - name: aws-cluster-us-east
+    namespace: my-clusters
+    chart: ./aws-cluster
+    missingFileHandler: Error
+    values:
+      - cluster:
+          region: us-east-1
+          sshKeyName: &ssh pavdmyt
+      - master:
+          sshKeyName: *ssh
+      - worker:
+          count: 1
+          sshKeyName: *ssh
+
+  - name: aws-cluster-us-west
+    namespace: my-clusters
+    chart: ./aws-cluster
+    missingFileHandler: Error
+    values:
+      - cluster:
+          region: us-west-2
+          sshKeyName: &ssh pavdmyt
+      - master:
+          sshKeyName: *ssh
+      - worker:
+          count: 1
+          sshKeyName: *ssh
